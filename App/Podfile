@@ -1,0 +1,27 @@
+platform :ios, '14.0'
+plugin "cocoapods-binary-cache"
+
+config_cocoapods_binary_cache(
+  cache_repo: {
+    "default" => {
+      "local" => "../Cache"
+    }
+  },
+  prebuild_config: "Debug"
+)
+
+target 'PodCacheApp' do
+  use_frameworks!
+
+  pod "Alamofire", "5.4.3", :binary => true
+  pod "RxSwift", "6.1.0", :binary => true
+  pod "RxCocoa", "6.1.0", :binary => true
+
+  target 'PodCacheAppTests' do
+    inherit! :search_paths
+  end
+
+  target 'PodCacheAppUITests' do
+  end
+
+end
